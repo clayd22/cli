@@ -14,52 +14,86 @@ To complete this, fork the repo and build a CLI agent where you can send questio
 
 To submit, send us a fork of your repo. You should modify / create a new README that outlines your approach and where you'd continue building things if you had more time. This should take no more than a few hours.
 
-## Setup
+## Quick Setup
 
-1. **Install dependencies**:
+Run the setup script to initialize everything:
 
-   ```bash
-   uv sync
-   ```
+```bash
+./setup.sh
+```
 
-2. **Generate synthetic data**
+This will:
+1. Generate synthetic data
+2. Initialize Airflow and load data into DuckDB
+3. Run dbt transformations
 
-   ```bash
-   uv run python scripts/generate_all.py
-   ```
+Then view the dashboards:
 
-3. **Run Airflow ingestion DAGs** (load data into DuckDB warehouse):
+```bash
+cd evidence
+npm install       # First time only
+npm run sources   # Build data sources
+npm run dev       # Start dev server
+# Open http://localhost:3000
+```
 
-   ```bash
-   cd airflow
+---
 
-   # Run individual DAGs
-   uv run python dags/ingest_products.py
-   uv run python dags/ingest_users.py
-   uv run python dags/ingest_transactions.py
-   uv run python dags/ingest_campaigns.py
-   uv run python dags/ingest_pageviews.py
-   ```
+## Manual Setup (Advanced)
 
-4. **Run dbt transformations** (create staging and marts layers):
+<details>
+<summary>Click to expand manual setup steps</summary>
 
-   ```bash
-   cd airflow
-   uv run python dags/run_dbt.py
+### 1. Install dependencies
 
-   # Or run dbt directly
-   cd ../dbt_project
-   uv run dbt build --profiles-dir .
-   ```
+```bash
+uv sync
+```
 
-5. **View dashboards**:
+### 2. Generate synthetic data
 
-   ```bash
-   cd evidence
-   npm install  # First time only
-   npm run dev
-   # Open http://localhost:3000
-   ```
+```bash
+uv run python scripts/generate_all.py
+```
+
+### 3. Initialize Airflow
+
+First, update `airflow/airflow.cfg` to use an absolute path for the database:
+
+```bash
+cd airflow
+# Update sql_alchemy_conn in airflow.cfg to:
+# sql_alchemy_conn = sqlite:////absolute/path/to/your/mini-data-platform/airflow/airflow.db
+
+export AIRFLOW_HOME=$(pwd)
+uv run airflow db migrate
+```
+
+### 4. Run ingestion DAGs
+
+```bash
+# From airflow/ directory
+export AIRFLOW_HOME=$(pwd)
+uv run python dags/ingest_products.py
+uv run python dags/ingest_users.py
+uv run python dags/ingest_transactions.py
+uv run python dags/ingest_campaigns.py
+uv run python dags/ingest_pageviews.py
+```
+
+### 5. Run dbt transformations
+
+```bash
+# From airflow/ directory
+export AIRFLOW_HOME=$(pwd)
+uv run python dags/run_dbt.py
+
+# Or run dbt directly
+cd ../dbt_project
+uv run dbt build --profiles-dir .
+```
+
+</details>
 
 ## Project Structure
 
@@ -129,8 +163,9 @@ The project includes interactive dashboards built with Evidence:
 
 ```bash
 cd evidence
-npm install  # First time only
-npm run dev
+npm install       # First time only
+npm run sources   # Build data sources
+npm run dev       # Start dev server
 ```
 
 Then open http://localhost:3000 to view dashboards.
