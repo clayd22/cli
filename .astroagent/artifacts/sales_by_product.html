@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 5 Highest Selling Products</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        #chartContainer { width: 80%; height: 70vh; }
+    </style>
+<script>window.DATA = {"sales": [{"product_name": "ValueCo Phone", "revenue": 2123999.0599999907}, {"product_name": "ModernLine Laptop", "revenue": 1670347.2699999993}, {"product_name": "ModernLine Smartwatch", "revenue": 1514754.0700000022}, {"product_name": "EcoGoods Camera", "revenue": 1484868.4299999946}, {"product_name": "Premium Headphones", "revenue": 1460457.3899999985}]};</script>
+</head>
+<body>
+    <div id="chartContainer">
+        <canvas id="barChart"></canvas>
+    </div>
+    <script>
+        // Check data exists
+        if (!window.DATA || !window.DATA.sales) {
+            document.getElementById('chartContainer').innerHTML = '<p class="error">Data not loaded</p>';
+        } else {
+            const data = window.DATA.sales;
+            const productNames = data.map(item => item.product_name);
+            const revenues = data.map(item => item.revenue);
+
+            const ctx = document.getElementById('barChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productNames,
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: revenues,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
