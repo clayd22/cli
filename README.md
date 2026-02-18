@@ -175,3 +175,5 @@ agent/
 One of my favorite tools introduced in other CLI's and web based agents is the ability to allow the agent to create react/html code to render graphs, charts, etc.  I think this would be a massive improvement to a data agent.
 
 Given more time, I would love to consolidate the configs.  Right now paths are scattered: API key in `~/.astroagent/config.json`, ChromaDB in `~/.astroagent/memory/`, the DuckDB path hardcoded in `sql_executor.py`, and the Airflow/dbt/Evidence paths hardcoded in `inspect_platform.py`.  A single `astroagent.yaml` at the project root could point to all of these, making the agent plug-and-play for any data platform.  We could also expand our explore step on initialization to build the hardcoded paths.
+
+I would also like to transition a lot of this boilerplate code for execution and LLM access to an MCP, this would really greatly generalize the agent tooling and allow us to work with desktop clients as well. 
