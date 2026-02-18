@@ -78,54 +78,34 @@ Storage is at `~/.astroagent/memory/chroma/` with three collections:
 
 ---
 
+```
 ChromaDB (~/.astroagent/memory/chroma/)
-  │
-  ├── schema_items
-  │   │
-  │   ├── [table entry]
-  │   │   ├── text: "Table: marts.fct_orders\nColumns: transaction_id (BIGINT), ..."
-  │   │   ├── embedding: [1536 floats]
-  │   │   └── metadata:
-  │   │       ├── type: "table"
-  │   │       ├── table_name: "marts.fct_orders"
-  │   │       ├── column_names: "transaction_id,product_id,total,..."
-  │   │       └── indexed_at: "2024-01-15T10:30:00"
-  │   │
-  │   └── [column entry]
-  │       ├── text: "Column: marts.fct_orders.total (type: DOUBLE)"
-  │       ├── embedding: [1536 floats]
-  │       └── metadata:
-  │           ├── type: "column"
-  │           ├── table_name: "marts.fct_orders"
-  │           ├── column_name: "total"
-  │           └── column_type: "DOUBLE"
-  │
-  ├── query_history
-  │   │
-  │   └── [query entry]
-  │       ├── text: "Question: What was total revenue?\nSQL: SELECT SUM(total)...\nResult: $2.4M"
-  │       ├── embedding: [1536 floats]
-  │       └── metadata:
-  │           ├── type: "query"
-  │           ├── question: "What was total revenue?"
-  │           ├── sql: "SELECT SUM(total) FROM marts.fct_orders"
-  │           ├── result_summary: "Total revenue: $2,400,000"
-  │           ├── session_id: "abc123"
-  │           └── indexed_at: "2024-01-15T10:35:00"
-  │
-  └── observations
-      │
-      └── [observation entry]
-          ├── text: "Electronics category shows 40% higher margins than average..."
-          ├── embedding: [1536 floats]
-          └── metadata:
-              ├── type: "observation"
-              ├── topic: ""
-              ├── session_id: "abc123"
-              └── indexed_at: "2024-01-15T10:40:00"
+│
+├── schema_items
+│   ├── [table entry]
+│   │   ├── text: "Table: marts.fct_orders\nColumns: transaction_id, ..."
+│   │   ├── embedding: [1536 floats]
+│   │   └── metadata: {type, table_name, column_names, indexed_at}
+│   │
+│   └── [column entry]
+│       ├── text: "Column: marts.fct_orders.total (DOUBLE)"
+│       ├── embedding: [1536 floats]
+│       └── metadata: {type, table_name, column_name, column_type}
+│
+├── query_history
+│   └── [query entry]
+│       ├── text: "Question: What was total revenue?\nSQL: SELECT..."
+│       ├── embedding: [1536 floats]
+│       └── metadata: {question, sql, result_summary, session_id}
+│
+└── observations
+    └── [observation entry]
+        ├── text: "Electronics category shows 40% higher margins..."
+        ├── embedding: [1536 floats]
+        └── metadata: {type, topic, session_id, indexed_at}
 
-  Retrieval flow:
-  User question → embed → cosine search all 3 collections → rank by score → inject top matches into prompt
+Retrieval: question → embed → cosine search all 3 → rank by score → inject into prompt
+```
 
 ## Other Features
 
