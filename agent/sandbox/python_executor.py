@@ -76,5 +76,6 @@ class PythonExecutor:
             "True": True,
             "False": False,
             "None": None,
+            "__import__": __import__,  # pandas internals need this (strftime, etc.)
         }
         return safe
