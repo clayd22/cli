@@ -51,7 +51,7 @@ class ResultDisplay:
         self.console.print()
 
         # Show what SQL inputs were used
-        self._show_inputs_summary(output.inputs_used)
+        self._show_inputs_summary(output.inputs_used, output.sql_queries)
 
         # Show the function that was applied
         self._show_function_code(output.function_code)
@@ -71,11 +71,16 @@ class ResultDisplay:
         if output.function_code:
             self._show_function_code(output.function_code)
 
-    def _show_inputs_summary(self, inputs_used: dict[str, pd.DataFrame]) -> None:
+    def _show_inputs_summary(self, inputs_used: dict[str, pd.DataFrame], sql_queries: dict[str, str] = None) -> None:
         """Show a summary of the SQL inputs that were used."""
         self.console.print("[title]SQL Inputs:[/title]")
         for name, df in inputs_used.items():
-            self.console.print(f"  [prompt]{name}[/prompt]: {len(df):,} rows")
+            rows_info = f"{len(df):,} rows"
+            if sql_queries and name in sql_queries:
+                self.console.print(f"  [prompt]{name}[/prompt] ({rows_info}):")
+                self.console.print(f"    [dim]{sql_queries[name]}[/dim]")
+            else:
+                self.console.print(f"  [prompt]{name}[/prompt]: {rows_info}")
         self.console.print()
 
     def _show_function_code(self, code: str) -> None:
@@ -176,32 +181,6 @@ def display_submit_result(output) -> None:
         output: SubmitResultOutput instance from submit_result()
     """
     result_display.show_submit_result(output)
-
-
-def display_artifact(output) -> None:
-    """
-    Display a render_artifact output.
-
-    Args:
-        output: RenderArtifactOutput instance
-    """
-    console.print()
-
-    if not output.success:
-        console.print(Panel(
-            f"[error]{output.error}[/error]",
-            title="Render Failed",
-            border_style="red"
-        ))
-        return
-
-    console.print(f"[info]{output.explanation}[/info]")
-    console.print()
-    console.print(Panel(
-        f"[result]{output.url}[/result]\n\n[dim]Opened in browser. Server running in background.[/dim]",
-        title="[result]Visualization Running[/result]",
-        border_style="green"
-    ))
 
 
 def display_observation(output) -> None:

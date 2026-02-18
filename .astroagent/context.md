@@ -14,4 +14,4 @@ Data platform contains multiple schemas for different stages of ETL process and 
 <!-- Useful query patterns discovered -->
 
 ## Notes
-<!-- Other important observations -->
+Use 'marts' schema for up-to-date queries, rather than 'staging_marts' which may contain stale data.

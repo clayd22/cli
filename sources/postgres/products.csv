@@ -1,63 +1,65 @@
 product_id,product_name,brand,category,price,cost,stock_quantity,created_at,updated_at
-1,ModernLine Laptop,ModernLine,Electronics,493,173.01,328,2023-07-30T00:00:00,2023-07-30T00:00:00
-2,ModernLine Laptop,ModernLine,Electronics,101,45.79,471,2023-05-28T00:00:00,2023-07-18T00:00:00
-3,ClassicMake Laptop,ClassicMake,Electronics,1338,751.78,121,2024-03-15T00:00:00,2024-03-30T00:00:00
-4,ProBrand Phone,ProBrand,Electronics,810,561.98,468,2023-08-22T00:00:00,2023-11-15T00:00:00
-5,ValueCo Phone,ValueCo,Electronics,880,598.44,54,2021-12-14T00:00:00,2022-01-27T00:00:00
-6,ValueCo Phone,ValueCo,Electronics,574,211.23,158,2024-01-18T00:00:00,2024-04-24T00:00:00
-7,TechFirst Tablet,TechFirst,Electronics,582,312.99,10,2022-12-01T00:00:00,2023-02-03T00:00:00
-8,ModernLine Tablet,ModernLine,Electronics,1081,401.0,214,2020-02-11T00:00:00,2020-03-04T00:00:00
-9,Premium Headphones,Premium,Electronics,1405,825.22,402,2024-02-26T00:00:00,2024-04-06T00:00:00
-10,EcoGoods Headphones,EcoGoods,Electronics,741,492.14,40,2024-03-12T00:00:00,2024-05-25T00:00:00
-11,TechFirst Smartwatch,TechFirst,Electronics,1066,641.19,1,2023-02-03T00:00:00,2023-03-02T00:00:00
-12,ModernLine Smartwatch,ModernLine,Electronics,1226,690.52,11,2024-01-30T00:00:00,2024-04-25T00:00:00
-13,ClassicMake Smartwatch,ClassicMake,Electronics,795,378.65,312,2020-10-18T00:00:00,2020-11-01T00:00:00
-14,TechFirst Camera,TechFirst,Electronics,1056,510.81,324,2024-03-07T00:00:00,2024-04-25T00:00:00
-15,EcoGoods Camera,EcoGoods,Electronics,1468,614.3,64,2024-07-17T00:00:00,2024-09-10T00:00:00
-16,Premium Camera,Premium,Electronics,1352,456.89,458,2024-04-20T00:00:00,2024-06-30T00:00:00
-17,TechFirst Speaker,TechFirst,Electronics,1161,615.77,135,2022-11-08T00:00:00,2023-01-03T00:00:00
-18,ProBrand Speaker,ProBrand,Electronics,1050,706.82,388,2022-02-27T00:00:00,2022-06-01T00:00:00
-19,Premium T-Shirt,Premium,Clothing,145,99.74,40,2020-01-30T00:00:00,2020-03-28T00:00:00
-20,ValueCo Jeans,ValueCo,Clothing,102,38.39,340,2024-02-02T00:00:00,2024-04-02T00:00:00
-21,ValueCo Jeans,ValueCo,Clothing,142,94.23,372,2024-04-24T00:00:00,2024-07-28T00:00:00
-22,ClassicMake Jacket,ClassicMake,Clothing,84,37.24,427,2022-11-23T00:00:00,2022-12-16T00:00:00
-23,EcoGoods Jacket,EcoGoods,Clothing,82,51.59,326,2023-10-16T00:00:00,2024-01-18T00:00:00
-24,ProBrand Sneakers,ProBrand,Clothing,199,65.57,326,2024-07-16T00:00:00,2024-08-30T00:00:00
-25,EcoGoods Sneakers,EcoGoods,Clothing,84,28.05,273,2021-01-11T00:00:00,2021-01-24T00:00:00
-26,ClassicMake Dress,ClassicMake,Clothing,152,60.31,389,2024-01-16T00:00:00,2024-03-27T00:00:00
-27,TechFirst Sweater,TechFirst,Clothing,66,29.2,176,2020-03-08T00:00:00,2020-06-03T00:00:00
-28,EcoGoods Sweater,EcoGoods,Clothing,84,54.56,478,2020-09-30T00:00:00,2020-10-26T00:00:00
-29,ValueCo Shorts,ValueCo,Clothing,148,55.49,264,2022-06-02T00:00:00,2022-06-06T00:00:00
-30,Premium Coffee Maker,Premium,Home & Garden,152,106.09,226,2023-03-19T00:00:00,2023-04-24T00:00:00
-31,ClassicMake Blender,ClassicMake,Home & Garden,286,190.3,275,2024-07-03T00:00:00,2024-07-06T00:00:00
-32,ClassicMake Blender,,Home & Garden,275,110.79,346,2024-04-22T00:00:00,2024-05-02T00:00:00
-33,ModernLine Vacuum,ModernLine,Home & Garden,167,95.84,368,2022-09-14T00:00:00,2022-09-27T00:00:00
-34,ProBrand Lamp,ProBrand,Home & Garden,244,161.77,433,2024-10-07T00:00:00,2024-12-03T00:00:00
-35,ProBrand Lamp,ProBrand,Home & Garden,61,32.94,374,2023-05-11T00:00:00,2023-05-17T00:00:00
-36,EcoGoods Lamp,EcoGoods,Home & Garden,190,64.69,355,2021-06-03T00:00:00,2021-06-03T00:00:00
-37,Premium Pillow,Premium,Home & Garden,258,147.28,452,2024-04-01T00:00:00,2024-06-26T00:00:00
-38,ProBrand Pillow,,Home & Garden,53,25.95,169,2022-05-14T00:00:00,2022-08-03T00:00:00
-39,ModernLine Pillow,ModernLine,Home & Garden,279,156.91,77,2023-11-01T00:00:00,2023-11-18T00:00:00
-40,ModernLine Rug,ModernLine,Home & Garden,90,28.69,175,2023-02-13T00:00:00,2023-04-15T00:00:00
-41,ProBrand Plant Pot,ProBrand,Home & Garden,118,47.2,320,2023-01-11T00:00:00,2023-01-17T00:00:00
-42,Premium Yoga Mat,Premium,Sports,302,172.46,170,2022-02-08T00:00:00,2022-05-01T00:00:00
-43,ModernLine Dumbbell Set,ModernLine,Sports,161,108.3,494,2024-02-13T00:00:00,2024-04-05T00:00:00
-44,ProBrand Dumbbell Set,ProBrand,Sports,192,125.75,105,2024-04-23T00:00:00,2024-04-24T00:00:00
-45,EcoGoods Dumbbell Set,EcoGoods,Sports,350,231.49,66,2024-09-10T00:00:00,2024-11-18T00:00:00
-46,EcoGoods Running Shoes,EcoGoods,Sports,494,155.05,53,2024-09-17T00:00:00,2024-10-22T00:00:00
-47,ValueCo Running Shoes,ValueCo,Sports,156,51.63,397,2022-11-07T00:00:00,2023-02-12T00:00:00
-48,ProBrand Bicycle,ProBrand,Sports,59,36.62,229,2022-03-19T00:00:00,2022-06-16T00:00:00
-49,ValueCo Tennis Racket,ValueCo,,231,89.13,282,2023-09-22T00:00:00,2023-09-23T00:00:00
-50,ValueCo Tennis Racket,ValueCo,Sports,81,36.54,430,2022-10-28T00:00:00,2022-11-29T00:00:00
-51,TechFirst Tennis Racket,TechFirst,Sports,207,68.34,312,2021-11-18T00:00:00,2022-01-31T00:00:00
-52,ValueCo Basketball,ValueCo,Sports,77,38.68,311,2021-05-17T00:00:00,2021-08-08T00:00:00
-53,ClassicMake Basketball,ClassicMake,Sports,131,81.57,444,2020-05-28T00:00:00,2020-07-09T00:00:00
-54,ProBrand Basketball,,Sports,81,33.33,99,2024-09-30T00:00:00,2024-10-17T00:00:00
-55,ClassicMake Fiction Novel,ClassicMake,Books,41,26.23,408,2024-04-02T00:00:00,2024-05-20T00:00:00
-56,ValueCo Cookbook,ValueCo,Books,35,12.55,317,2021-10-02T00:00:00,2021-10-24T00:00:00
-57,TechFirst Self-Help,TechFirst,Books,15,6.21,156,2024-10-07T00:00:00,2024-10-20T00:00:00
-58,TechFirst Self-Help,TechFirst,Books,50,33.67,138,2020-12-18T00:00:00,2021-01-20T00:00:00
-59,ValueCo Biography,ValueCo,Books,26,16.66,479,2021-04-20T00:00:00,2021-07-18T00:00:00
-60,Premium Biography,Premium,Books,26,17.95,445,2024-06-02T00:00:00,2024-06-30T00:00:00
-61,TechFirst Technical Manual,TechFirst,Books,16,9.93,312,2023-08-25T00:00:00,2023-09-01T00:00:00
-62,ValueCo Children's Book,ValueCo,Books,49,28.61,234,2020-07-16T00:00:00,2020-10-15T00:00:00
+1,Premium Laptop,Premium,Electronics,848,519.97,142,2022-04-09T00:00:00,2022-07-06T00:00:00
+2,ValueCo Laptop,ValueCo,Electronics,589,270.33,188,2020-08-13T00:00:00,2020-10-18T00:00:00
+3,ModernLine Laptop,ModernLine,Electronics,1484,571.73,109,2023-03-01T00:00:00,2023-04-30T00:00:00
+4,ClassicMake Phone,ClassicMake,Electronics,562,245.35,75,2021-08-17T00:00:00,2021-08-27T00:00:00
+5,ValueCo Phone,ValueCo,Electronics,272,100.35,74,2023-07-13T00:00:00,2023-10-17T00:00:00
+6,ModernLine Phone,ModernLine,Electronics,1233,743.21,270,2020-11-14T00:00:00,2021-01-24T00:00:00
+7,ValueCo Tablet,ValueCo,Electronics,154,93.83,452,2023-12-19T00:00:00,2024-03-23T00:00:00
+8,TechFirst Tablet,TechFirst,Electronics,467,231.01,95,2020-01-26T00:00:00,2020-03-11T00:00:00
+9,ValueCo Tablet,ValueCo,Electronics,1172,514.09,117,2022-08-26T00:00:00,2022-10-19T00:00:00
+10,Premium Headphones,Premium,Electronics,412,201.14,53,2022-03-12T00:00:00,2022-04-28T00:00:00
+11,ClassicMake Smartwatch,ClassicMake,Electronics,232,161.85,75,2021-09-17T00:00:00,2021-09-17T00:00:00
+12,TechFirst Smartwatch,TechFirst,Electronics,1176,410.89,79,2020-02-04T00:00:00,2020-02-21T00:00:00
+13,ModernLine Camera,ModernLine,Electronics,280,123.88,461,2021-05-15T00:00:00,2021-08-15T00:00:00
+14,ValueCo Camera,ValueCo,Electronics,1019,596.11,182,2022-06-03T00:00:00,2022-08-17T00:00:00
+15,ProBrand Camera,ProBrand,Electronics,405,197.52,377,2020-01-27T00:00:00,2020-03-19T00:00:00
+16,ModernLine Speaker,ModernLine,Electronics,434,132.7,102,2021-04-10T00:00:00,2021-05-11T00:00:00
+17,ProBrand Speaker,ProBrand,Electronics,537,283.1,39,2021-07-10T00:00:00,2021-09-30T00:00:00
+18,ProBrand Speaker,,Electronics,1137,470.61,425,2023-12-29T00:00:00,2024-01-12T00:00:00
+19,ValueCo T-Shirt,ValueCo,Clothing,191,102.35,92,2020-06-14T00:00:00,2020-08-02T00:00:00
+20,ProBrand T-Shirt,ProBrand,Clothing,188,113.84,374,2021-12-01T00:00:00,2022-01-08T00:00:00
+21,ProBrand Jeans,ProBrand,Clothing,142,46.49,243,2024-01-10T00:00:00,2024-02-08T00:00:00
+22,ClassicMake Jacket,ClassicMake,Clothing,156,78.02,384,2022-07-14T00:00:00,2022-07-27T00:00:00
+23,ValueCo Sneakers,ValueCo,Clothing,35,18.95,149,2021-01-02T00:00:00,2021-01-06T00:00:00
+24,ClassicMake Dress,ClassicMake,Clothing,160,67.15,376,2022-11-17T00:00:00,2023-01-09T00:00:00
+25,ProBrand Sweater,ProBrand,Clothing,184,58.4,445,2024-09-13T00:00:00,2024-10-06T00:00:00
+26,Premium Sweater,Premium,Clothing,32,16.76,133,2021-06-03T00:00:00,2021-08-03T00:00:00
+27,TechFirst Shorts,TechFirst,Clothing,30,18.61,433,2023-10-29T00:00:00,2024-01-28T00:00:00
+28,ValueCo Coffee Maker,ValueCo,Home & Garden,173,69.09,85,2022-03-14T00:00:00,2022-03-23T00:00:00
+29,ProBrand Blender,ProBrand,Home & Garden,184,85.13,406,2023-06-08T00:00:00,2023-08-27T00:00:00
+30,EcoGoods Blender,EcoGoods,Home & Garden,73,42.63,234,2020-12-23T00:00:00,2020-12-30T00:00:00
+31,TechFirst Vacuum,,Home & Garden,261,166.02,388,2020-10-10T00:00:00,2020-11-14T00:00:00
+32,ValueCo Vacuum,ValueCo,Home & Garden,190,76.47,320,2024-02-08T00:00:00,2024-03-18T00:00:00
+33,EcoGoods Lamp,EcoGoods,Home & Garden,110,62.36,58,2022-07-14T00:00:00,2022-08-16T00:00:00
+34,TechFirst Lamp,TechFirst,Home & Garden,37,21.94,307,2020-12-13T00:00:00,2021-01-13T00:00:00
+35,TechFirst Lamp,TechFirst,Home & Garden,110,45.92,222,2022-09-25T00:00:00,2022-11-19T00:00:00
+36,TechFirst Pillow,TechFirst,Home & Garden,30,20.93,195,2021-12-02T00:00:00,2022-01-25T00:00:00
+37,EcoGoods Pillow,EcoGoods,Home & Garden,81,45.26,303,2023-12-01T00:00:00,2024-02-15T00:00:00
+38,ValueCo Rug,ValueCo,Home & Garden,135,43.7,119,2024-06-25T00:00:00,2024-08-10T00:00:00
+39,TechFirst Plant Pot,TechFirst,Home & Garden,72,50.2,462,2021-07-26T00:00:00,2021-08-06T00:00:00
+40,ValueCo Plant Pot,ValueCo,Home & Garden,62,42.23,432,2022-11-06T00:00:00,2022-11-17T00:00:00
+41,Premium Yoga Mat,,Sports,27,10.88,447,2020-08-31T00:00:00,2020-11-28T00:00:00
+42,ValueCo Yoga Mat,ValueCo,Sports,166,59.35,371,2022-09-24T00:00:00,2022-11-27T00:00:00
+43,ProBrand Dumbbell Set,,Sports,162,103.48,168,2022-12-31T00:00:00,2023-03-16T00:00:00
+44,ValueCo Running Shoes,ValueCo,Sports,236,93.7,275,2021-04-15T00:00:00,2021-06-12T00:00:00
+45,ValueCo Bicycle,,Sports,135,47.08,2,2024-06-03T00:00:00,2024-06-22T00:00:00
+46,EcoGoods Bicycle,EcoGoods,Sports,371,165.89,194,2024-08-26T00:00:00,2024-11-28T00:00:00
+47,ClassicMake Bicycle,,Sports,377,210.22,236,2022-04-29T00:00:00,2022-06-02T00:00:00
+48,EcoGoods Tennis Racket,EcoGoods,Sports,399,165.89,424,2022-04-24T00:00:00,2022-07-15T00:00:00
+49,Premium Tennis Racket,Premium,Sports,81,30.17,400,2021-10-19T00:00:00,2021-10-22T00:00:00
+50,ProBrand Basketball,ProBrand,Sports,-168,107.57,178,2021-05-10T00:00:00,2021-08-14T00:00:00
+51,TechFirst Basketball,TechFirst,Sports,72,45.68,76,2020-02-16T00:00:00,2020-04-05T00:00:00
+52,EcoGoods Fiction Novel,EcoGoods,,-48,22.94,106,2024-04-09T00:00:00,2024-04-20T00:00:00
+53,ProBrand Fiction Novel,ProBrand,Books,33,16.91,342,2023-11-11T00:00:00,2024-01-31T00:00:00
+54,Premium Cookbook,Premium,Books,29,12.3,30,2021-03-10T00:00:00,2021-04-11T00:00:00
+55,TechFirst Cookbook,TechFirst,Books,16,9.22,95,2021-05-24T00:00:00,2021-06-10T00:00:00
+56,Premium Cookbook,Premium,Books,44,25.37,141,2020-11-14T00:00:00,2021-01-22T00:00:00
+57,ClassicMake Self-Help,ClassicMake,Books,38,25.07,371,2021-05-25T00:00:00,2021-06-25T00:00:00
+58,ProBrand Self-Help,ProBrand,Books,40,14.03,484,2024-11-22T00:00:00,2024-12-11T00:00:00
+59,TechFirst Biography,TechFirst,Books,12,5.31,139,2020-11-12T00:00:00,2021-02-11T00:00:00
+60,ProBrand Biography,ProBrand,Books,30,12.7,251,2022-10-05T00:00:00,2022-12-29T00:00:00
+61,EcoGoods Technical Manual,EcoGoods,Books,24,12.29,490,2022-04-22T00:00:00,2022-05-19T00:00:00
+62,ModernLine Children's Book,ModernLine,Books,27,13.37,452,2023-09-15T00:00:00,2023-11-15T00:00:00
+63,ProBrand Children's Book,ProBrand,Books,23,14.14,156,2022-12-07T00:00:00,2023-02-14T00:00:00
+64,TechFirst Children's Book,TechFirst,Books,20,12.7,464,2022-06-11T00:00:00,2022-06-26T00:00:00

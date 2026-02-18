@@ -31,7 +31,7 @@ LOGO = """
   / ___ \\\\__ \\ |_| | | (_) / ___ \\ (_| |  __/ | | | |_
  /_/   \\_\\___/\\__|_|  \\___/_/   \\_\\__, |\\___|_| |_|\\__|
                                   |___/                [/bright_magenta]
-[dim cyan]        Mission Control for Your Data Universe[/dim cyan]
+[dim cyan]        Mission Control[/dim cyan]
 """
 
 STARS = "[dim white]·  ✦  ·  ·  ✦  ·  ✦  ·  ·  ✦  ·  ·  ✦  ·  ✦  ·[/dim white]"
@@ -41,11 +41,11 @@ TOOL_ICONS = {
     "run_sql": ">",
     "run_python": "#",
     "inspect_schema": "?",
+    "inspect_platform": "@",
     "read_context": "<",
     "update_context": "+",
     "submit_result": "*",
     "submit_observation": "~",
-    "render_artifact": "@",
     "send_message": "-",
 }
 
@@ -59,7 +59,7 @@ def print_logo():
 def print_welcome():
     print_logo()
     console.print("[info]Type your questions about the data, or 'exit' to quit.[/info]")
-    console.print("[info]Use 'help' for available commands.[/info]")
+    console.print("[info]Use 'help' for commands, or type / for settings.[/info]")
     console.print()
 
 

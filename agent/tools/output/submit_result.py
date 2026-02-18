@@ -68,6 +68,7 @@ class SubmitResultOutput:
         success: Whether the computation completed without errors
         result: The final computed value (only valid if success=True)
         inputs_used: Dict mapping input names to their DataFrames
+        sql_queries: Dict mapping input names to their SQL queries
         function_code: The Python code that was executed
         explanation: The agent's explanation of what this computes
         error: Error message if success=False
@@ -75,6 +76,7 @@ class SubmitResultOutput:
     success: bool
     result: Any = None
     inputs_used: dict[str, pd.DataFrame] = field(default_factory=dict)
+    sql_queries: dict[str, str] = field(default_factory=dict)
     function_code: str = None
     explanation: str = None
     error: str = None
@@ -130,6 +132,7 @@ def submit_result(
             success=False,
             error=f"Function execution error: {error}",
             inputs_used=dataframes,
+            sql_queries=inputs,
             function_code=function,
             explanation=explanation
         )
@@ -139,6 +142,7 @@ def submit_result(
         success=True,
         result=result,
         inputs_used=dataframes,
+        sql_queries=inputs,
         function_code=function,
         explanation=explanation
     )

@@ -1,19 +1,23 @@
 """
 cli.py
 
-Command-line interface for AstroAgent.
 
 Provides:
-- Interactive REPL mode for conversational data exploration
-- One-shot question mode via 'ask' command
-- Configuration management for API keys
+- REPL mode for conversational data search
+- Slash commands for settings (/model, /output, /status, /help)
 """
 
 import sys
 import click
+from prompt_toolkit import PromptSession
+from prompt_toolkit.completion import Completer, Completion
+from prompt_toolkit.styles import Style
+from prompt_toolkit.formatted_text import HTML
 
 from .config import get_api_key, set_api_key, clear_config
 from .context import context_exists, create_context, get_context_path
+from .settings import AgentSettings, SlashCommandRegistry
+from .session import SessionManager
 from .theme import (
     console,
     print_welcome,
@@ -27,10 +31,34 @@ from .theme import (
 from .orchestrator import Orchestrator
 
 
+class SlashCompleter(Completer):
+    """Autocomplete provider for slash commands."""
+
+    def __init__(self, registry: SlashCommandRegistry):
+        self.registry = registry
+
+    def get_completions(self, document, complete_event):
+        text = document.text_before_cursor
+
+        if not text.startswith("/"):
+            return
+
+        completions = self.registry.get_completions(text)
+
+        for cmd, desc in completions:
+            # Calculate how much to replace
+            yield Completion(
+                cmd,
+                start_position=-len(text),
+                display=cmd,
+                display_meta=desc if desc else None,
+            )
+
+
 @click.group(invoke_without_command=True)
 @click.pass_context
 def cli(ctx):
-    """AstroAgent - Mission Control for Your Data Universe"""
+    """AstroAgent - Mission Control"""
     if ctx.invoked_subcommand is None:
         start_repl()
 
@@ -67,27 +95,42 @@ def ask(question: tuple):
     orchestrator.process_question(query)
 
 
-def handle_command(cmd: str, orchestrator: Orchestrator) -> bool:
+def handle_command(
+    cmd: str,
+    orchestrator: Orchestrator,
+    registry: SlashCommandRegistry
+) -> bool:
     """
-    Handle special REPL commands.
+    Handle special REPL commands and slash commands.
 
     Args:
         cmd: The command string entered by user
         orchestrator: The current Orchestrator instance
+        registry: The slash command registry
 
     Returns:
         True: Command handled, continue REPL
         False: Exit command, stop REPL
         None: Not a command, process as question
     """
-    cmd = cmd.strip().lower()
+    cmd_stripped = cmd.strip()
+    cmd_lower = cmd_stripped.lower()
 
-    if cmd in ("exit", "quit", "q"):
+    # Handle slash commands
+    if cmd_stripped.startswith("/"):
+        success, message = registry.execute(cmd_stripped)
+        if success:
+            print_success(message)
+        else:
+            print_error(message)
+        return True
+
+    if cmd_lower in ("exit", "quit", "q"):
         print_divider()
         console.print("[info]Transmission ended. Safe travels, astronaut.[/info]")
         return False
 
-    if cmd == "help":
+    if cmd_lower == "help":
         console.print("""
 [title]Available Commands[/title]
   [prompt]help[/prompt]      Show this message
@@ -95,10 +138,18 @@ def handle_command(cmd: str, orchestrator: Orchestrator) -> bool:
   [prompt]schema[/prompt]    Show database schema
   [prompt]context[/prompt]   Show current context file
   [prompt]exit[/prompt]      Exit AstroAgent
+
+[title]Slash Commands[/title]  (type / to see completions)
+  [prompt]/model[/prompt]    Change AI model
+  [prompt]/output[/prompt]   Set output mode (auto, observation, query)
+  [prompt]/session[/prompt]  Session management (new, save, load, list, clear)
+  [prompt]/rag[/prompt]      RAG memory (index, stats, clear)
+  [prompt]/status[/prompt]   Show current settings and session info
+  [prompt]/help[/prompt]     Show slash command help
         """)
         return True
 
-    if cmd == "context":
+    if cmd_lower == "context":
         from .context import read_context, context_exists
         if not context_exists():
             console.print("[info]No context file exists.[/info]")
@@ -107,12 +158,12 @@ def handle_command(cmd: str, orchestrator: Orchestrator) -> bool:
             console.print(content)
         return True
 
-    if cmd == "clear":
+    if cmd_lower == "clear":
         orchestrator.clear_history()
         print_success("Conversation history cleared.")
         return True
 
-    if cmd == "schema":
+    if cmd_lower == "schema":
         from .schema import get_full_schema_context
         console.print(get_full_schema_context())
         return True
@@ -153,6 +204,7 @@ def start_repl():
     - Ask questions about their data
     - Explore the schema
     - Have multi-turn conversations
+    - Use slash commands for settings
     """
     # Ensure API key is configured
     if not get_api_key():
@@ -172,24 +224,60 @@ def start_repl():
 
     print_welcome()
 
-    # Initialize the orchestrator
+    # Initialize settings and session manager
+    settings = AgentSettings()
+    session_manager = SessionManager(settings.model)
+
+    # Initialize slash command registry with session manager
+    registry = SlashCommandRegistry(settings, session_manager)
+
+    # Initialize the orchestrator with settings and session manager
     try:
-        orchestrator = Orchestrator()
+        orchestrator = Orchestrator(settings=settings, session_manager=session_manager)
     except ValueError as e:
         print_error(str(e))
         sys.exit(1)
 
+    # --- RAG: Show stats only, don't block startup ---
+    try:
+        from .memory import MemoryStore
+        store = MemoryStore()
+        stats = store.get_stats()
+        if stats['schema'] > 0:
+            console.print(f"[dim]RAG: {stats['schema']} schema, {stats['queries']} queries, {stats['observations']} obs[/dim]")
+        else:
+            console.print("[dim]RAG: not indexed (run /rag index)[/dim]")
+    except Exception:
+        pass  # RAG init issues shouldn't block startup
+
+    # Show session ID
+    console.print(f"[dim]Session: {session_manager.current_session.id}[/dim]")
+    console.print()
+
+    # Set up prompt_toolkit with slash command completion
+    prompt_style = Style.from_dict({
+        "prompt": "#00d4aa bold",
+    })
+
+    session = PromptSession(
+        completer=SlashCompleter(registry),
+        style=prompt_style,
+        complete_while_typing=True,
+    )
+
     # Main REPL loop
     while True:
         try:
-            print_prompt()
-            user_input = input().strip()
+            # Use prompt_toolkit for input with completion
+            user_input = session.prompt(
+                HTML("<prompt>mission&gt;</prompt> "),
+            ).strip()
 
             if not user_input:
                 continue
 
             # Check for special commands
-            command_result = handle_command(user_input, orchestrator)
+            command_result = handle_command(user_input, orchestrator, registry)
             if command_result is False:
                 break
             if command_result is True:
@@ -202,6 +290,12 @@ def start_repl():
             console.print()
             print_divider()
             console.print("[info]Transmission interrupted. Safe travels, astronaut.[/info]")
+            break
+        except EOFError:
+            # Handle Ctrl+D
+            console.print()
+            print_divider()
+            console.print("[info]Transmission ended. Safe travels, astronaut.[/info]")
             break
         except Exception as e:
             print_error(str(e))
