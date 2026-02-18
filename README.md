@@ -133,35 +133,37 @@ Orchestrator.py - manages the thinking and submission agent actions, has these t
 - send_message: Send a message to the user (for clarifications, progress updates)
 
 
+```
 agent/
-  ├── cli.py              # Entry point - REPL loop, slash command handling
-  ├── orchestrator.py     # Core agent loop - LLM calls, tool dispatch
-  ├── settings.py         # SlashCommandRegistry, AgentSettings, output modes
-  ├── session.py          # Session tracking - tokens, history, save/load
-  ├── config.py           # API key storage (~/.astroagent/config.json)
-  ├── schema.py           # DuckDB introspection - tables, columns, samples
-  ├── context.py          # Persistent notes file (.astroagent/context.md)
-  ├── display.py          # Formats submit_result/observation for terminal
-  ├── theme.py            # Rich console styling, spinners, tool icons
-  │
-  ├── sandbox/            # Isolated code execution
-  │   ├── sql_executor.py    # Runs SQL against DuckDB, returns DataFrame
-  │   └── python_executor.py # Runs Python with DataFrames in restricted env
-  │
-  ├── tools/
-  │   ├── internal/       # Results return to LLM for reasoning
-  │   │   ├── run_sql.py         # Execute SQL, see results
-  │   │   ├── run_python.py      # Test Python logic
-  │   │   ├── inspect_schema.py  # View tables/columns/samples
-  │   │   ├── inspect_platform.py# View DAGs, dbt models, dashboards
-  │   │   └── context_tools.py   # Read/update persistent notes
-  │   │
-  │   └── output/         # Results go to user, end the loop
-  │       ├── submit_result.py      # SQL + Python function → computed answer
-  │       ├── submit_observation.py # Narrative/qualitative answer
-  │       └── send_message.py       # Mid-conversation message to user
-  │
-  └── memory/             # RAG system
-      ├── embedder.py     # OpenAI text-embedding-3-small
-      ├── store.py        # ChromaDB storage, indexing methods
-      └── retriever.py    # Query-time retrieval, formatting for prompt
+├── cli.py              # Entry point - REPL loop, slash command handling
+├── orchestrator.py     # Core agent loop - LLM calls, tool dispatch
+├── settings.py         # SlashCommandRegistry, AgentSettings, output modes
+├── session.py          # Session tracking - tokens, history, save/load
+├── config.py           # API key storage (~/.astroagent/config.json)
+├── schema.py           # DuckDB introspection - tables, columns, samples
+├── context.py          # Persistent notes file (.astroagent/context.md)
+├── display.py          # Formats submit_result/observation for terminal
+├── theme.py            # Rich console styling, spinners, tool icons
+│
+├── sandbox/            # Isolated code execution
+│   ├── sql_executor.py    # Runs SQL against DuckDB, returns DataFrame
+│   └── python_executor.py # Runs Python with DataFrames in restricted env
+│
+├── tools/
+│   ├── internal/       # Results return to LLM for reasoning
+│   │   ├── run_sql.py         # Execute SQL, see results
+│   │   ├── run_python.py      # Test Python logic
+│   │   ├── inspect_schema.py  # View tables/columns/samples
+│   │   ├── inspect_platform.py# View DAGs, dbt models, dashboards
+│   │   └── context_tools.py   # Read/update persistent notes
+│   │
+│   └── output/         # Results go to user, end the loop
+│       ├── submit_result.py      # SQL + Python function → computed answer
+│       ├── submit_observation.py # Narrative/qualitative answer
+│       └── send_message.py       # Mid-conversation message to user
+│
+└── memory/             # RAG system
+    ├── embedder.py     # OpenAI text-embedding-3-small
+    ├── store.py        # ChromaDB storage, indexing methods
+    └── retriever.py    # Query-time retrieval, formatting for prompt
+```
